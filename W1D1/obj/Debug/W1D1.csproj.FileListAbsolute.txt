@@ -1,7 +1,0 @@
-D:\Nerd\Code\C#\MSSA\W1D1\bin\Debug\W1D1.exe.config
-D:\Nerd\Code\C#\MSSA\W1D1\bin\Debug\W1D1.exe
-D:\Nerd\Code\C#\MSSA\W1D1\bin\Debug\W1D1.pdb
-D:\Nerd\Code\C#\MSSA\W1D1\obj\Debug\W1D1.csproj.AssemblyReference.cache
-D:\Nerd\Code\C#\MSSA\W1D1\obj\Debug\W1D1.csproj.CoreCompileInputs.cache
-D:\Nerd\Code\C#\MSSA\W1D1\obj\Debug\W1D1.exe
-D:\Nerd\Code\C#\MSSA\W1D1\obj\Debug\W1D1.pdb
