@@ -12,7 +12,7 @@ namespace W1D1C2 {
             // Data Types Variable Name
             int i; // 32 bit signed number
             char c = 'n'; // Initialized variable, 16 bit Unicode character
-            float f = 3.14f; // 32 bit floating point number
+            const float f = 3.14f; // 32 bit floating point number
             double d = 3.14; // 64 bit floating point number
             bool b = true; // Boolean value
             string s = "Hello"; // String
