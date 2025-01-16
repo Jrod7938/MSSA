@@ -16,7 +16,7 @@ The repository is organized by weeks and days:
 ```
 WeekX/DayX/WXDXCX
 ```
-- **WeekX**: The week of the course (e.g., `week1`, `week2`, etc.).
+- **WeekX**: The week of the course (e.g., `Week1`, `Week2`, etc.).
 - **DayX**: The specific day of the week (e.g., `Day1`, `Day2`, etc.).
 - **WXDXCX**: The code file(s) produced on that specific day. Each code file is numbered sequentially (e.g., `W1D1C1`, `W1D1C2`).
 
