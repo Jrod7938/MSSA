@@ -12,7 +12,6 @@ namespace W1D4Assignment {
         private string studentLastName;
 
         private char grade;
-        private char[] validGrades = { 'A', 'B', 'C', 'D', 'F' };
 
         private static int count = 0;
 
@@ -27,7 +26,7 @@ namespace W1D4Assignment {
         public char Grade {
             get { return grade; }
             set {
-                if (validGrades.Contains(value)){
+                if (new[] {'A', 'B', 'C', 'D', 'F'}.Contains(value)){
                     grade = value;
                 }
             }
@@ -38,7 +37,7 @@ namespace W1D4Assignment {
             studentId = count;
             this.studentFirstName = studentFirstName;
             this.studentLastName = studentLastName;
-            this.grade = grade;
+            Grade = grade;
         }
 
         public static void Print(Student student) {
