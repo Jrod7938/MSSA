@@ -1,4 +1,4 @@
-# MSSA
+# Microsoft Software & Systems Academy (MSSA)
 All code produced during the Microsoft Software and Systems Academy (MSSA) - PCAD16 track.
 
 #### About MSSA
