@@ -3,7 +3,6 @@
 namespace W2D3C2 {
     internal class Solution {
         internal static void BiggestNumber(int[] ints) {
-            if(ints.Length < 1) return;
             if (ints.Length == 1) {
                 Console.WriteLine(ints[0]);
                 return;
@@ -17,7 +16,6 @@ namespace W2D3C2 {
         }
 
         internal static void SmallestNumber(int[] ints) {
-            if (ints.Length < 1) return;
             if (ints.Length == 1) {
                 Console.WriteLine(ints[0]);
                 return;
