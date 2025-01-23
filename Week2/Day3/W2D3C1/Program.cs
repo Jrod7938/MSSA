@@ -48,6 +48,10 @@ namespace W2D3C1 {
             }
 
             var k = new Emp(); // implicitly typed variable
+
+            using(UsingWord uw = new UsingWord()) {
+                // logic
+            }
         }
 
         static void Swap(ref int num1, ref int num2) { // passing original address
