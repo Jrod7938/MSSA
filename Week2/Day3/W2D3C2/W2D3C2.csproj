@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{83BA5D95-F0F6-4235-B1A3-759EDAA146C6}</ProjectGuid>
+    <ProjectGuid>{978242FF-2489-4D0B-B10A-6DFBE90AC4E5}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>W2D3C1</RootNamespace>
-    <AssemblyName>W2D3C1</AssemblyName>
+    <RootNamespace>W2D3C2</RootNamespace>
+    <AssemblyName>W2D3C2</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,10 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Emp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsingWord.cs" />
+    <Compile Include="Solution.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
