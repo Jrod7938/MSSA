@@ -15,5 +15,18 @@ namespace W2D3C2 {
             }
             Console.WriteLine(biggest);
         }
+
+        internal static void SmallestNumber(int[] ints) {
+            if (ints.Length < 1) return;
+            if (ints.Length == 1) {
+                Console.WriteLine(ints[0]);
+                return;
+            }
+            int smallest = ints[0];
+            for (int i = 1; i < ints.Length; i++) {
+                if (ints[i] < smallest) smallest = ints[i];
+            }
+            Console.WriteLine(smallest);
+        }
     }
 }
