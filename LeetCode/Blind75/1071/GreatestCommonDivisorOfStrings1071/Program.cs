@@ -1,0 +1,1 @@
+Console.WriteLine(Solution.GcdOfStrings("CODECODECODE","CODE"));
