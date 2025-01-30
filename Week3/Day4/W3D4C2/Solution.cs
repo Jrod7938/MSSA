@@ -9,9 +9,7 @@ namespace W3D4C2 {
 
             int minValueCost = ints[0] + ints[1];
 
-            if(minValueCost <= money) {
-                return money - minValueCost;
-            }
+            if(minValueCost <= money) return money - minValueCost;
 
             return money;
         }
