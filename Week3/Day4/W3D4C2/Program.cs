@@ -15,15 +15,15 @@
             Console.WriteLine(Solution.BuyChocolate(ref chocolatePrices, money));
         }
 
-        static T GetInput<T>(string promt) {
-            Console.Write(promt);
+        static T GetInput<T>(string prompt) {
+            Console.Write(prompt);
             string input = Console.ReadLine();
             try {
                 var userInput = Convert.ChangeType(input, typeof(T));
                 return (T)userInput;
             } catch (Exception exception){
                 Console.WriteLine($"Invalid input, Please input value of type {typeof(T).Name}\nError Message: {exception.Message}");
-                return GetInput<T>(promt);
+                return GetInput<T>(prompt);
             }
         }
     }
