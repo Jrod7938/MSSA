@@ -2,7 +2,7 @@
 namespace W3D4C2 {
     internal class Solution {
 
-        internal static int BuyChocolate(ref int[] ints, int money) {
+        internal static int BuyChocolate(int[] ints, int money) {
             if (ints.Length < 2) return money;
             
             Array.Sort(ints);

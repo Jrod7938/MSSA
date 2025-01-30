@@ -12,7 +12,7 @@
                 chocolatePrices[i] = input;
             }
             int money = GetInput<int>("Enter the amount of money: ");
-            Console.WriteLine(Solution.BuyChocolate(ref chocolatePrices, money));
+            Console.WriteLine(Solution.BuyChocolate(chocolatePrices, money));
         }
 
         static T GetInput<T>(string prompt) {
