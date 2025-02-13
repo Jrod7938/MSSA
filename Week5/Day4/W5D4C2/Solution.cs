@@ -8,9 +8,9 @@
                 maxMoneyTwoHousesAgo = 0; // max money robbed 2 houses ago
 
             foreach (int currentHouseMoney in nums) {
-                int tempMax = maxMoneyPrevHouse; // store previous max
+                int tempMax = maxMoneyPrevHouse; // store previous max (i-1)
                 maxMoneyPrevHouse = Math.Max(maxMoneyTwoHousesAgo + currentHouseMoney, maxMoneyPrevHouse); // get max between houses not adjacent 
-                maxMoneyTwoHousesAgo = tempMax;
+                maxMoneyTwoHousesAgo = tempMax; // move i-2 forward
             }
 
             return maxMoneyPrevHouse;
