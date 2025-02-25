@@ -7,12 +7,36 @@ public class CheckersBoard : MonoBehaviour
     public GameObject redPiecePrefab;
     public GameObject blackPiecePrefab;
 
-    private Vector3 boardOffSet = new Vector3(-4f, 5.6f, -4f);
-    private Vector3 pieceOffSet = new Vector3(1.5f, 0, 1f);
+    private Vector3 boardOffSet = new Vector3(-4f, 5.411365f, -3.5f);
+    private Vector3 pieceOffSet = new Vector3(1.5f, 0, .5f);
+
+    private Vector2 mouseOver;
 
     private void Start()
     {
         GenerateBoard();
+    }
+
+    private void Update()
+    {
+        UpdateMouseOver();
+        Debug.Log($"Mouse: {mouseOver}");
+    }
+
+    private void UpdateMouseOver(){
+        if(!Camera.main){
+            Debug.Log("Unable to find Main Camera");
+            return;
+        }
+
+        RaycastHit hit;
+        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))){
+            mouseOver.x = (int)(hit.point.x - boardOffSet.x) - 1;
+            mouseOver.y = (int)(hit.point.z - boardOffSet.z);
+        } else {
+            mouseOver.x = -1;
+            mouseOver.y = -1;
+        }
     }
 
     private void GenerateBoard(){
