@@ -66,10 +66,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Core\Piece.cs" />
-    <Compile Include="Assets\Scripts\Core\BoardManager.cs" />
+    <Compile Include="Assets\Scripts\Core\CheckersBoard.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\Scripts\Core\PlayerInput.cs" />
-    <Compile Include="Assets\Scripts\Core\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
