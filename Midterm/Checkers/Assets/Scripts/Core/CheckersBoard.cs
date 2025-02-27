@@ -7,7 +7,9 @@ public class CheckersBoard : MonoBehaviour
     Piece[,] pieces = new Piece[8,8];
 
     public GameObject redPiecePrefab;
+    public GameObject redKingPiecePrefab;
     public GameObject blackPiecePrefab;
+    public GameObject blackKingPiecePrefab;
 
     private Vector3 boardOffSet = new Vector3(-4f, 5.411365f, -3.5f);
     private Vector3 pieceOffSet = new Vector3(1.5f, 0, .5f);
@@ -35,7 +37,7 @@ public class CheckersBoard : MonoBehaviour
         UpdateMouseOver();
         
         // if my turn
-        {
+        if((isRed)? isRedTurn : !isRedTurn){
             int x = (int)mouseOver.x;
             int y = (int)mouseOver.y;
 
@@ -183,8 +185,31 @@ public class CheckersBoard : MonoBehaviour
     }
 
     private void EndTurn(){
+        int x = (int)endDrag.x;
+        int y = (int)endDrag.y;
+
+        if(selectedPiece.isRed && !selectedPiece.isKing && y == 7){ // should we "king" a red piece?
+            Destroy(selectedPiece.gameObject);
+            GameObject newKing = Instantiate(redKingPiecePrefab, transform);
+            Piece kingComponent = newKing.GetComponent<Piece>();
+            kingComponent.isRed = true;
+            kingComponent.isKing = true;
+            pieces[x, y] = kingComponent;
+            MovePiece(kingComponent, x, y);
+        } else if(!selectedPiece.isRed && !selectedPiece.isKing && y == 0){ // should we "king" a black piece
+            Destroy(selectedPiece.gameObject);
+            GameObject newKing = Instantiate(blackKingPiecePrefab, transform);
+            Piece kingComponent = newKing.GetComponent<Piece>();
+            kingComponent.isRed = false;
+            kingComponent.isKing = true;
+            pieces[x, y] = kingComponent;
+            MovePiece(kingComponent, x, y);
+        }
+
         selectedPiece = null;
         startDrag = Vector2.zero;
+
+        if(ScanForPossibleMove(selectedPiece, x, y).Count != 0 && hasKilled) return; // can you will another?
 
         isRedTurn = !isRedTurn;
         hasKilled = false;
@@ -192,7 +217,37 @@ public class CheckersBoard : MonoBehaviour
     }
 
     private void CheckVictory(){
+        var ps = FindObjectsByType<Piece>(FindObjectsSortMode.None);
+        bool hasRed = false;
+        bool hasBlack = false;
+        for(int i = 0; i < ps.Length; i++){
+            if(ps[i].isRed){
+                hasRed = true;
+            }else{
+                hasBlack = true;
+            }
+        }
 
+        if(!hasRed) Victory(false);
+        if(!hasBlack) Victory(true);
+    }
+
+    private void Victory(bool isRed){
+        if(isRed){
+            Debug.Log("Red Team Won.");
+        } else {
+            Debug.Log("Black Team Won.");
+        }
+    }
+
+    private List<Piece> ScanForPossibleMove(Piece piece, int x, int y){
+        forcedPieces = new List<Piece>();
+
+        if(pieces[x, y].IsForcedToMove(pieces, x, y)){
+            forcedPieces.Add(pieces[x, y]);
+        }
+
+        return forcedPieces;
     }
 
     private List<Piece> ScanForPossibleMove(){
