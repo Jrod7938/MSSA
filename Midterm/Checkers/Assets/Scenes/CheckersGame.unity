@@ -210,13 +210,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49262445}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 2, y: 3, z: -1}
+  m_LocalRotation: {x: 0.62088513, y: -0.19826688, z: 0.16636564, w: 0.7399422}
+  m_LocalPosition: {x: 1, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 80, y: -30, z: 0}
 --- !u!114 &49262448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +815,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6935565479401457366, guid: 2a1d8716d72c4494097481a712b64991, type: 3}
+      propertyPath: isRed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935565479401457366, guid: 2a1d8716d72c4494097481a712b64991, type: 3}
+      propertyPath: redKingPiecePrefab
+      value: 
+      objectReference: {fileID: 7344340621303329473, guid: 97b2e7a232f3ba448b89b4ca39cae4f6, type: 3}
+    - target: {fileID: 6935565479401457366, guid: 2a1d8716d72c4494097481a712b64991, type: 3}
+      propertyPath: blackKingPiecePrefab
+      value: 
+      objectReference: {fileID: 794394799567847706, guid: 6723f51f1ac8fa3429988feb51f5b336, type: 3}
     - target: {fileID: 6938001635071550076, guid: 2a1d8716d72c4494097481a712b64991, type: 3}
       propertyPath: m_Layer
       value: 7
