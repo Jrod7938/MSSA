@@ -11,6 +11,9 @@ public class CheckersBoard : MonoBehaviour
     private Vector3 boardOffSet = new Vector3(-4f, 5.411365f, -3.5f);
     private Vector3 pieceOffSet = new Vector3(1.5f, 0, .5f);
 
+    private bool isRed;
+    private bool isRedTurn;
+
     private Piece selectedPiece;
 
     private Vector2 mouseOver;
@@ -19,6 +22,7 @@ public class CheckersBoard : MonoBehaviour
 
     private void Start()
     {
+        isRedTurn = true;
         GenerateBoard();
     }
 
@@ -31,6 +35,8 @@ public class CheckersBoard : MonoBehaviour
             int x = (int)mouseOver.x;
             int y = (int)mouseOver.y;
 
+            if(selectedPiece != null) UpdatePieceDrag(selectedPiece);
+
             // Debug.Log($"Mouse: {x} {y}");
             if(Input.GetMouseButtonDown(0)){
                 SelectPiece(x, y);
@@ -40,15 +46,6 @@ public class CheckersBoard : MonoBehaviour
                 TryMove((int)startDrag.x, (int)startDrag.y, x, y);
             }
         }
-    }
-
-    private void TryMove(int x1, int y1, int x2, int y2) {
-        startDrag = new Vector2(x1, y1);
-        endDrag = new Vector2(x2, y2);
-
-        selectedPiece = pieces[x1, y1];
-
-        MovePiece(selectedPiece, x2, y2);
     }
 
     private void GenerateBoard(){
@@ -83,6 +80,18 @@ public class CheckersBoard : MonoBehaviour
         }
     }
 
+    private void UpdatePieceDrag(Piece piece){
+        if(!Camera.main){
+            Debug.Log("Unable to find Main Camera");
+            return;
+        }
+
+        RaycastHit hit;
+        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board"))){
+            piece.transform.position = hit.point + Vector3.up;
+        } 
+    }
+
     private void SelectPiece(int x, int y){
         if(x < 0 || x >= pieces.Length || y < 0 || y >= pieces.Length) return;
         
@@ -93,6 +102,46 @@ public class CheckersBoard : MonoBehaviour
             Debug.Log(selectedPiece.name);
         }
     }
+
+    private void TryMove(int x1, int y1, int x2, int y2) {
+        startDrag = new Vector2(x1, y1);
+        endDrag = new Vector2(x2, y2);
+
+        selectedPiece = pieces[x1, y1];
+
+        if(x2 < 0 || x2 >= pieces.Length || y2 < 0 || y2 >= pieces.Length) { // out of bounds
+            if(selectedPiece != null) MovePiece(selectedPiece, x1, y1);
+
+            startDrag = Vector2.zero;
+            selectedPiece = null;
+            return;
+        }
+        if(selectedPiece != null){
+            if(endDrag == startDrag){ // has not moved
+                MovePiece(selectedPiece, x1, y1);
+                startDrag = Vector2.zero;
+                selectedPiece = null;
+                return;
+            }
+
+            if(selectedPiece.ValidMove(pieces, x1, y1, x2, y2)){ // check valid move
+                if(Mathf.Abs(x1 - x2) == 2){ // capture might be x2 - x2
+                    Piece capturePiece = pieces[(x1 + x2) / 2, (y1 + y2) / 2];
+                    if(capturePiece != null){
+                        pieces[(x1 + x2) / 2, (y1 + y2) / 2] = null;
+                        Destroy(capturePiece);
+                    }
+                }
+
+                pieces[x2, y2] = selectedPiece;
+                pieces[x1, y1] = null;
+                MovePiece(selectedPiece, x2, y2);
+
+                EndTurn();
+            }
+        }
+    }
+
 
     private void GeneratePiece(int x, int y){
         bool isRed = (y > 3) ? false : true;
@@ -105,5 +154,17 @@ public class CheckersBoard : MonoBehaviour
 
     private void MovePiece(Piece piece, int x, int y){
         piece.transform.position = (Vector3.right * x) + (Vector3.forward * y) + boardOffSet + pieceOffSet;
+    }
+
+    private void EndTurn(){
+        selectedPiece = null;
+        startDrag = Vector2.zero;
+
+        isRedTurn = !isRedTurn;
+        CheckVictory();
+    }
+
+    private void CheckVictory(){
+
     }
 }
