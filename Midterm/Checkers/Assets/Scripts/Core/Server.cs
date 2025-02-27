@@ -90,7 +90,19 @@ public class Server : MonoBehaviour
         }
     }
 
-    private void OnInComingData(ServerClient serverClient, string data) {
+    private void BroadCast(string data, List<ServerClient> clientList) { // Server Send
+        foreach(ServerClient serverClient in clientList) {
+            try {
+                StreamWriter writer = new StreamWriter(serverClient.tcp.GetStream());
+                writer.WriteLine(data);
+                writer.Flush();
+            } catch(Exception exception) {
+                Debug.Log($"Write error: {exception.Message}");
+            }
+        }
+    }
+
+    private void OnInComingData(ServerClient serverClient, string data) { // Server Recieve
         Debug.Log($"{serverClient.clientName} : {data}");
     }
 }
