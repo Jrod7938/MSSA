@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5045122707261751323}
   - component: {fileID: 3367647684807199331}
   - component: {fileID: 7722892922953642293}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6440181581956206540}
   - component: {fileID: 3705504480440004671}
   - component: {fileID: 346605608939285851}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 896617838374982046}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 5604994945489633213}
   - component: {fileID: 2699724160175011269}
   - component: {fileID: 6982315937636241043}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 533950439921441226}
   - component: {fileID: 2741023202779162584}
   - component: {fileID: 5954300361742749494}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 144095613369897709}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 5753201761613848525}
   - component: {fileID: 2839751974480811445}
   - component: {fileID: 7131908403675967203}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 6112242221393512629}
   - component: {fileID: 4530494082643130182}
   - component: {fileID: 683552203167148578}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 501359772686532108}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 3368689332228043076}
   - component: {fileID: 6685415155059779734}
   - component: {fileID: 8385594828238324303}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 5848216184814088182}
   - component: {fileID: 4261968844533616645}
   - component: {fileID: 902537776655764833}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,7 +798,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 374433944503726475}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 5427244582308426012}
   - component: {fileID: 2589248541220780900}
   - component: {fileID: 7385807029085372466}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,7 +917,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 405617732632414134}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -949,7 +949,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 336448318968400429}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -982,7 +982,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1982777484345132255}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1014,7 +1014,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1884422625350898225}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,7 +1048,7 @@ GameObject:
   - component: {fileID: 5616229452300333624}
   - component: {fileID: 2881280500839697867}
   - component: {fileID: 1179844282505892015}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1134,7 +1134,7 @@ GameObject:
   - component: {fileID: 6336866070287562297}
   - component: {fileID: 4561790150018251841}
   - component: {fileID: 8854015779103344407}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1221,7 +1221,7 @@ GameObject:
   - component: {fileID: 5339812299059204261}
   - component: {fileID: 2312129232116019030}
   - component: {fileID: 1708463014863647282}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1305,7 +1305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2170845569755894835}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1338,7 +1338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1385945386764566714}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1372,7 +1372,8 @@ GameObject:
   m_Component:
   - component: {fileID: 726154080885743403}
   - component: {fileID: 6935565479401457366}
-  m_Layer: 0
+  - component: {fileID: 2966515826153908234}
+  m_Layer: 7
   m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1456,8 +1457,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redPiecePrefab: {fileID: 8861728444785168208, guid: ca5b7181fd2321642bfea8a3af38dd17, type: 3}
+  redKingPiecePrefab: {fileID: 7344340621303329473, guid: 97b2e7a232f3ba448b89b4ca39cae4f6, type: 3}
   blackPiecePrefab: {fileID: 710733070143360243, guid: bea406b99a0407744aa7e7c7e7239c24, type: 3}
-  boardOffSet: {x: -3.5, y: 5.6, z: -3.5}
+  blackKingPiecePrefab: {fileID: 794394799567847706, guid: 6723f51f1ac8fa3429988feb51f5b336, type: 3}
+  isRed: 1
+--- !u!65 &2966515826153908234
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857494128760888502}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.098421, y: 0, z: 8.147656}
+  m_Center: {x: 0.9753928, y: 5.64, z: 0.5492197}
 --- !u!1 &1998918629069200843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,7 +1491,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1222240539955742577}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1500,7 +1524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1192010070108995887}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellCorner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1534,7 +1558,7 @@ GameObject:
   - component: {fileID: 8560241706781282928}
   - component: {fileID: 9038252137934487714}
   - component: {fileID: 6803144766164571313}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1618,7 +1642,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1585398302094564162}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1650,7 +1674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1625895374506866013}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1684,7 +1708,7 @@ GameObject:
   - component: {fileID: 4634860618519629977}
   - component: {fileID: 3053109159658696554}
   - component: {fileID: 2160929425141002766}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1770,7 +1794,7 @@ GameObject:
   - component: {fileID: 4891829056929389394}
   - component: {fileID: 4904994064511644991}
   - component: {fileID: 8143611121798627602}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1857,7 +1881,7 @@ GameObject:
   - component: {fileID: 6952644757014022660}
   - component: {fileID: 631463224151900284}
   - component: {fileID: 5571546462431623978}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1942,7 +1966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3363326269878170485}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1975,7 +1999,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3290728251940761100}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2009,7 +2033,7 @@ GameObject:
   - component: {fileID: 7088626636652905518}
   - component: {fileID: 1736982940148169549}
   - component: {fileID: 7264435052380138865}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2093,7 +2117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2588441927729763300}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2127,7 +2151,7 @@ GameObject:
   - component: {fileID: 7807665801613853559}
   - component: {fileID: 352916067739846927}
   - component: {fileID: 4716602256134730329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2212,7 +2236,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2493287698284515675}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2246,7 +2270,7 @@ GameObject:
   - component: {fileID: 7839155958790810984}
   - component: {fileID: 321425914873079568}
   - component: {fileID: 4748092129824431174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2333,7 +2357,7 @@ GameObject:
   - component: {fileID: 8502766888133952540}
   - component: {fileID: 2302292517062736879}
   - component: {fileID: 2904990666143901323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2417,7 +2441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2313210829980621876}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2451,7 +2475,7 @@ GameObject:
   - component: {fileID: 7918934794112069006}
   - component: {fileID: 2577371341447067847}
   - component: {fileID: 2140724952310679461}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2536,7 +2560,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2663979638337202496}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2570,7 +2594,7 @@ GameObject:
   - component: {fileID: 2771539658820523201}
   - component: {fileID: 3325979362547511615}
   - component: {fileID: 8987428959606133280}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCorner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2655,7 +2679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4194451469678054896}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2690,7 +2714,7 @@ GameObject:
   - component: {fileID: 7604913704990473213}
   - component: {fileID: 6729865584479770213}
   - component: {fileID: 332697549075661525}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2774,7 +2798,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4046154185024369237}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2811,7 +2835,7 @@ GameObject:
   - component: {fileID: 9218439005480889865}
   - component: {fileID: 4806310318434426680}
   - component: {fileID: 485608125810763708}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2897,7 +2921,7 @@ GameObject:
   - component: {fileID: 1291350374496096445}
   - component: {fileID: 7839421658945142767}
   - component: {fileID: 8515037905736185372}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2983,7 +3007,7 @@ GameObject:
   - component: {fileID: 4887683292479564473}
   - component: {fileID: 7537999163520268182}
   - component: {fileID: 9021354609340524997}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3067,7 +3091,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4348772628310939694}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3099,7 +3123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4336308600113659852}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3133,7 +3157,7 @@ GameObject:
   - component: {fileID: 8984437145868756537}
   - component: {fileID: 1445805145925708865}
   - component: {fileID: 5873252013613733655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3218,7 +3242,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3534028027213801769}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3252,7 +3276,7 @@ GameObject:
   - component: {fileID: 9221994180708261763}
   - component: {fileID: 1676662039869937147}
   - component: {fileID: 5968888769003810477}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3339,7 +3363,7 @@ GameObject:
   - component: {fileID: 7162772296350315457}
   - component: {fileID: 678848116312886322}
   - component: {fileID: 4523931271977537878}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3425,7 +3449,7 @@ GameObject:
   - component: {fileID: 7158512209195011747}
   - component: {fileID: 672341853523177808}
   - component: {fileID: 4537192029987613748}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3509,7 +3533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4004510141645236104}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3541,7 +3565,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3858858585108203512}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3575,7 +3599,7 @@ GameObject:
   - component: {fileID: 406760335230032288}
   - component: {fileID: 7861793717837583320}
   - component: {fileID: 2921640110896539790}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3660,7 +3684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5353802830636889049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellCorner (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3692,7 +3716,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5190709554297857788}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3724,7 +3748,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5248897073290330579}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3759,7 +3783,7 @@ GameObject:
   - component: {fileID: 1972737199750821599}
   - component: {fileID: 8172931270467471660}
   - component: {fileID: 5102559643266192456}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3845,7 +3869,7 @@ GameObject:
   - component: {fileID: 211123319098679590}
   - component: {fileID: 7661087438779722590}
   - component: {fileID: 3440985305156554760}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3932,7 +3956,7 @@ GameObject:
   - component: {fileID: 1778089179386605844}
   - component: {fileID: 8260038256468430567}
   - component: {fileID: 4972666963876991875}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4018,7 +4042,7 @@ GameObject:
   - component: {fileID: 6276956335589190960}
   - component: {fileID: 9133318784778878568}
   - component: {fileID: 7916060999967480047}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4105,7 +4129,7 @@ GameObject:
   - component: {fileID: 1619936254326923862}
   - component: {fileID: 8968827153669103013}
   - component: {fileID: 5464088460435800257}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4189,7 +4213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4774269725171951296}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4223,7 +4247,7 @@ GameObject:
   - component: {fileID: 1299823684961567149}
   - component: {fileID: 819184414852320111}
   - component: {fileID: 5273091574360859448}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4309,7 +4333,7 @@ GameObject:
   - component: {fileID: 1102870171167541062}
   - component: {fileID: 7489916599975103806}
   - component: {fileID: 2477249170844382824}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4396,7 +4420,7 @@ GameObject:
   - component: {fileID: 1080499542041928379}
   - component: {fileID: 7368202896189434051}
   - component: {fileID: 2580684593468150677}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4483,7 +4507,7 @@ GameObject:
   - component: {fileID: 1431988990640255674}
   - component: {fileID: 8778630379404528969}
   - component: {fileID: 5652033576621396013}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4569,7 +4593,7 @@ GameObject:
   - component: {fileID: 665226471116186717}
   - component: {fileID: 2179304488816519286}
   - component: {fileID: 785196903522204321}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4653,7 +4677,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5020270130468979805}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4687,7 +4711,7 @@ GameObject:
   - component: {fileID: 966319313815799790}
   - component: {fileID: 7450512874116151325}
   - component: {fileID: 5820465712483771769}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4771,7 +4795,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6445291364985969043}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4803,7 +4827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6446883887450099442}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellCorner (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4835,7 +4859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6373268577369483991}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4870,7 +4894,7 @@ GameObject:
   - component: {fileID: 932247378445646920}
   - component: {fileID: 7420953323881579451}
   - component: {fileID: 5863544864271113951}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4956,7 +4980,7 @@ GameObject:
   - component: {fileID: 694858131124249736}
   - component: {fileID: 7181031929210084219}
   - component: {fileID: 6056177356895897119}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5040,7 +5064,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6664935820730141926}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5072,7 +5096,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6667654088414936784}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5106,7 +5130,7 @@ GameObject:
   - component: {fileID: 2604573946614613620}
   - component: {fileID: 1006902396370146591}
   - component: {fileID: 431059829093062732}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5190,7 +5214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6036366021283595044}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5222,7 +5246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5939111653037093992}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5254,7 +5278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5853361190334003625}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5289,7 +5313,7 @@ GameObject:
   - component: {fileID: 300090635912194043}
   - component: {fileID: 7937213225799145480}
   - component: {fileID: 6450665558941566316}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5375,7 +5399,7 @@ GameObject:
   - component: {fileID: 1752228411742040519}
   - component: {fileID: 8137586239193398207}
   - component: {fileID: 3855063799684169961}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5462,7 +5486,7 @@ GameObject:
   - component: {fileID: 5207697390842337158}
   - component: {fileID: 4619366202054668920}
   - component: {fileID: 1336102927875740007}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCorner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5547,7 +5571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7711124732563994822}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5579,7 +5603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7727060473493915044}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5613,7 +5637,7 @@ GameObject:
   - component: {fileID: 1762925745028872795}
   - component: {fileID: 4738016893950681243}
   - component: {fileID: 3364216548803279439}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5699,7 +5723,7 @@ GameObject:
   - component: {fileID: 2748473560171795667}
   - component: {fileID: 5664160268848357035}
   - component: {fileID: 795536559536891389}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5786,7 +5810,7 @@ GameObject:
   - component: {fileID: 2461349086577963746}
   - component: {fileID: 5375008845535361178}
   - component: {fileID: 1082743633945920460}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5871,7 +5895,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7064805869837969906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5906,7 +5930,7 @@ GameObject:
   - component: {fileID: 3780462142463396265}
   - component: {fileID: 6807861531211609690}
   - component: {fileID: 7627297559197739838}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5992,7 +6016,7 @@ GameObject:
   - component: {fileID: 8984722189739173431}
   - component: {fileID: 8425699453850223561}
   - component: {fileID: 2774105897360646358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCorner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6079,7 +6103,7 @@ GameObject:
   - component: {fileID: 2999233657893985041}
   - component: {fileID: 4692965191693570409}
   - component: {fileID: 338246550896847423}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6166,7 +6190,7 @@ GameObject:
   - component: {fileID: 3634088896929708949}
   - component: {fileID: 6368766275422930022}
   - component: {fileID: 8052889583699302658}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6252,7 +6276,7 @@ GameObject:
   - component: {fileID: 2896350443223051357}
   - component: {fileID: 4651741797223720485}
   - component: {fileID: 369080819719167347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6339,7 +6363,7 @@ GameObject:
   - component: {fileID: 3494120619014833200}
   - component: {fileID: 6517020404513684419}
   - component: {fileID: 7913634615964198567}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6425,7 +6449,7 @@ GameObject:
   - component: {fileID: 3216437263640518437}
   - component: {fileID: 5093451407389008086}
   - component: {fileID: 8146000551594163634}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6509,7 +6533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8697610312769075475}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6542,7 +6566,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9223103393963737493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6576,7 +6600,7 @@ GameObject:
   - component: {fileID: 3148211593199117697}
   - component: {fileID: 4736720781505698418}
   - component: {fileID: 8511747437098878742}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6662,7 +6686,7 @@ GameObject:
   - component: {fileID: 3081201051721836350}
   - component: {fileID: 4669713568660019405}
   - component: {fileID: 8605777428822361513}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6746,7 +6770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9131566501144052328}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellCorner (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6778,7 +6802,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9053548707399905913}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCell (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6812,7 +6836,7 @@ GameObject:
   - component: {fileID: 2900708512189246033}
   - component: {fileID: 4777726233775445410}
   - component: {fileID: 8497764679954024646}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6898,7 +6922,7 @@ GameObject:
   - component: {fileID: 3642785244139788774}
   - component: {fileID: 6499375977338835870}
   - component: {fileID: 2279700523414399176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6985,7 +7009,7 @@ GameObject:
   - component: {fileID: 8037602383507331868}
   - component: {fileID: 7482010536549465826}
   - component: {fileID: 3838460443635998205}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCorner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7072,7 +7096,7 @@ GameObject:
   - component: {fileID: 2807889466205324560}
   - component: {fileID: 5547070386543737571}
   - component: {fileID: 8888096196430817159}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: roof_flatCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7156,7 +7180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8436437712648707955}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7188,7 +7212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8405024699910978190}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: boardCellBoarder (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
