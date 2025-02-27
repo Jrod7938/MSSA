@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckersBoard : MonoBehaviour
@@ -11,10 +12,12 @@ public class CheckersBoard : MonoBehaviour
     private Vector3 boardOffSet = new Vector3(-4f, 5.411365f, -3.5f);
     private Vector3 pieceOffSet = new Vector3(1.5f, 0, .5f);
 
-    private bool isRed;
+    public bool isRed;
     private bool isRedTurn;
+    private bool hasKilled;
 
     private Piece selectedPiece;
+    private List<Piece> forcedPieces;
 
     private Vector2 mouseOver;
     private Vector2 startDrag;
@@ -23,6 +26,7 @@ public class CheckersBoard : MonoBehaviour
     private void Start()
     {
         isRedTurn = true;
+        forcedPieces = new List<Piece>();
         GenerateBoard();
     }
 
@@ -93,23 +97,32 @@ public class CheckersBoard : MonoBehaviour
     }
 
     private void SelectPiece(int x, int y){
-        if(x < 0 || x >= pieces.Length || y < 0 || y >= pieces.Length) return;
+        if(x < 0 || x >= 8 || y < 0 || y >= 8) return;
         
         Piece piece = pieces[x, y];
-        if(piece != null){
-            selectedPiece = piece;
-            startDrag = mouseOver;
-            Debug.Log(selectedPiece.name);
+        if(piece != null && piece.isRed == isRed){
+            if(forcedPieces.Count == 0){
+                selectedPiece = piece;
+                startDrag = mouseOver;
+                
+            }else{
+                if(forcedPieces.Find(fp => fp == piece) == null) return; // search for piece
+                selectedPiece = piece;
+                startDrag = mouseOver;
+            }
+            
         }
     }
 
     private void TryMove(int x1, int y1, int x2, int y2) {
+        forcedPieces = ScanForPossibleMove();
+        
         startDrag = new Vector2(x1, y1);
         endDrag = new Vector2(x2, y2);
 
         selectedPiece = pieces[x1, y1];
 
-        if(x2 < 0 || x2 >= pieces.Length || y2 < 0 || y2 >= pieces.Length) { // out of bounds
+        if(x2 < 0 || x2 >= 8 || y2 < 0 || y2 >= 8) { // out of bounds
             if(selectedPiece != null) MovePiece(selectedPiece, x1, y1);
 
             startDrag = Vector2.zero;
@@ -125,12 +138,20 @@ public class CheckersBoard : MonoBehaviour
             }
 
             if(selectedPiece.ValidMove(pieces, x1, y1, x2, y2)){ // check valid move
-                if(Mathf.Abs(x1 - x2) == 2){ // capture might be x2 - x2
+                if(Mathf.Abs(x2 - x1) == 2){ // capture 
                     Piece capturePiece = pieces[(x1 + x2) / 2, (y1 + y2) / 2];
                     if(capturePiece != null){
                         pieces[(x1 + x2) / 2, (y1 + y2) / 2] = null;
-                        Destroy(capturePiece);
+                        Destroy(capturePiece.gameObject);
+                        hasKilled = true;
                     }
+                }
+
+                if(forcedPieces.Count != 0 && !hasKilled) { // were we supposed to kill something
+                    MovePiece(selectedPiece, x1, y1);
+                    startDrag = Vector2.zero;
+                    selectedPiece = null;
+                    return;
                 }
 
                 pieces[x2, y2] = selectedPiece;
@@ -138,6 +159,11 @@ public class CheckersBoard : MonoBehaviour
                 MovePiece(selectedPiece, x2, y2);
 
                 EndTurn();
+            } else {
+                MovePiece(selectedPiece, x1, y1);
+                startDrag = Vector2.zero;
+                selectedPiece = null;
+                return;
             }
         }
     }
@@ -161,10 +187,26 @@ public class CheckersBoard : MonoBehaviour
         startDrag = Vector2.zero;
 
         isRedTurn = !isRedTurn;
+        hasKilled = false;
         CheckVictory();
     }
 
     private void CheckVictory(){
 
+    }
+
+    private List<Piece> ScanForPossibleMove(){
+        forcedPieces = new List<Piece>();
+
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                if(pieces[i,j] != null && pieces[i,j].isRed == isRedTurn){
+                    if(pieces[i, j].IsForcedToMove(pieces, i, j)){
+                        forcedPieces.Add(pieces[i, j]);
+                    }
+                }
+            }
+        }
+        return forcedPieces;
     }
 }
