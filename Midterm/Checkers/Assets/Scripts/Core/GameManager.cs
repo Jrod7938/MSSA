@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,7 +39,8 @@ public class GameManager : MonoBehaviour
 
             Client client = Instantiate(clientPrefab).GetComponent<Client>();
             client.clientName = nameInput.text;
-            if (client.clientName == "") client.name = "Host";
+            client.isHost = true;
+            if (client.clientName == "") client.clientName = "Host";
             client.ConnectToServer("127.0.0.1", 4793); // connect to server self
         } catch (Exception exception) {
             Debug.Log(exception.Message);
@@ -55,7 +57,7 @@ public class GameManager : MonoBehaviour
         try {
             Client client = Instantiate(clientPrefab).GetComponent<Client>();
             client.clientName = nameInput.text;
-            if (client.clientName == "") client.name = "Client";
+            if (client.clientName == "") client.clientName = "Client";
             client.ConnectToServer(hostAddress, 4793);
             connectMenu.SetActive(false);
         }catch(Exception exception) {
@@ -74,5 +76,9 @@ public class GameManager : MonoBehaviour
 
         Client client = FindAnyObjectByType<Client>();
         if (client != null) Destroy(client.gameObject);
+    }
+
+    public void StartGame() {
+        SceneManager.LoadScene("CheckersGame");
     }
 }

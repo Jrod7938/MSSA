@@ -1,17 +1,21 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using UnityEngine;
 
 public class Client : MonoBehaviour
 {
-
     public string clientName;
+    public bool isHost;
+
     private bool socketReady;
     private TcpClient socket;
     private NetworkStream stream;
     private StreamWriter writer;
     private StreamReader reader;
+
+    private List<GameClient> players = new List<GameClient>();
 
     private void Start() {
         DontDestroyOnLoad(gameObject);
@@ -46,7 +50,34 @@ public class Client : MonoBehaviour
     }
 
     private void OnIncomingData(string data) {
-        Debug.Log(data);
+        Debug.Log("Client: " + data);
+        string[] aData = data.Split('|');
+
+        switch (aData[0]) {
+            case "SWHO":
+                for(int i = 1; i < aData.Length - 1; i++) {
+                    UserConnected(aData[i], false);
+                }
+                Send("CWHO|" + clientName + "|" + ((isHost) ? 1 : 0).ToString());
+                break;
+            case "SCNN":
+                UserConnected(aData[1], false);
+                break;
+            case "SMOV":
+                CheckersBoard.Instance.TryMove(int.Parse(aData[1]), int.Parse(aData[2]), int.Parse(aData[3]), int.Parse(aData[4]));
+                break;
+        }
+    }
+
+    private void UserConnected(string name, bool isHost) {
+        GameClient client = new GameClient();
+        client.name = name;
+
+        players.Add(client);
+
+        if(players.Count == 2) {
+            GameManager.Instance.StartGame();
+        }
     }
 
     private void OnApplicationQuit() {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CheckersBoard : MonoBehaviour
 {
+    public static CheckersBoard Instance;
     Piece[,] pieces = new Piece[8,8];
 
     public GameObject redPiecePrefab;
@@ -25,8 +26,14 @@ public class CheckersBoard : MonoBehaviour
     private Vector2 startDrag;
     private Vector2 endDrag;
 
+    private Client client;
+
     private void Start()
     {
+        Instance = this;
+        client = FindAnyObjectByType<Client>();
+        isRed = client.isHost;
+
         isRedTurn = true;
         forcedPieces = new List<Piece>();
         GenerateBoard();
@@ -116,7 +123,7 @@ public class CheckersBoard : MonoBehaviour
         }
     }
 
-    private void TryMove(int x1, int y1, int x2, int y2) {
+    public void TryMove(int x1, int y1, int x2, int y2) {
         forcedPieces = ScanForPossibleMove();
         
         startDrag = new Vector2(x1, y1);
@@ -144,7 +151,7 @@ public class CheckersBoard : MonoBehaviour
                     Piece capturePiece = pieces[(x1 + x2) / 2, (y1 + y2) / 2];
                     if(capturePiece != null){
                         pieces[(x1 + x2) / 2, (y1 + y2) / 2] = null;
-                        Destroy(capturePiece.gameObject);
+                        DestroyImmediate(capturePiece.gameObject);
                         hasKilled = true;
                     }
                 }
@@ -206,12 +213,21 @@ public class CheckersBoard : MonoBehaviour
             MovePiece(kingComponent, x, y);
         }
 
+        string msg = "CMOV|";
+        msg += startDrag.x.ToString() + "|";
+        msg += startDrag.y.ToString() + "|";
+        msg += endDrag.x.ToString() + "|";
+        msg += endDrag.y.ToString();
+
+        client.Send(msg);
+
         selectedPiece = null;
         startDrag = Vector2.zero;
 
-        if(ScanForPossibleMove(selectedPiece, x, y).Count != 0 && hasKilled) return; // can you will another?
+        if (ScanForPossibleMove(selectedPiece, x, y).Count != 0 && hasKilled) return; // can you will another?
 
         isRedTurn = !isRedTurn;
+        // isRed = !isRed;
         hasKilled = false;
         CheckVictory();
     }
