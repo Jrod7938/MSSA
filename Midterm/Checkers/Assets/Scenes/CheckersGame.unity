@@ -429,6 +429,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Board
       objectReference: {fileID: 0}
+    - target: {fileID: 6935565479401457366, guid: 2a1d8716d72c4494097481a712b64991, type: 3}
+      propertyPath: isRed
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

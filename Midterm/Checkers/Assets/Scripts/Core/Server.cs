@@ -66,12 +66,17 @@ public class Server : MonoBehaviour
     private void AcceptTcpClient(IAsyncResult ar){
         TcpListener listener = (TcpListener)ar.AsyncState;
 
+        string allUsers = "";
+        foreach (ServerClient serverClient in clients) {
+            allUsers += serverClient.clientName + '|';
+        }
+
         ServerClient sc = new ServerClient(listener.EndAcceptTcpClient(ar));
         clients.Add(sc);
         
         StartListening(); // listen again after client connection
 
-        Debug.Log("Someone has connected!");
+        BroadCast("SWHO|" + allUsers, clients[clients.Count - 1]);
     }
 
     private bool IsConnected(TcpClient client) {
@@ -101,15 +106,31 @@ public class Server : MonoBehaviour
             }
         }
     }
-
+    private void BroadCast(string data, ServerClient client) { // Server Send
+        List<ServerClient> serverClient = new List<ServerClient>() { client };
+        BroadCast(data, serverClient);
+    }
     private void OnInComingData(ServerClient serverClient, string data) { // Server Recieve
-        Debug.Log($"{serverClient.clientName} : {data}");
+        Debug.Log("Server: " + data);
+        string[] aData = data.Split('|');
+
+        switch (aData[0]) {
+            case "CWHO":
+                serverClient.clientName = aData[1];
+                serverClient.isHost = (aData[2] == "0") ? false : true;
+                BroadCast("SCNN|" + serverClient.clientName, clients);
+                break;
+            case "CMOV":
+                BroadCast("SMOV|" + aData[1] + "|" + aData[2] + "|" + aData[3] + "|" + aData[4], clients);
+                break;
+        }
     }
 }
 
 public class ServerClient{
     public string clientName;
     public TcpClient tcp;
+    public bool isHost;
 
     public ServerClient(TcpClient tcp){
         this.tcp = tcp;
