@@ -9,7 +9,7 @@ public struct Move {
     }
 }
 
-public class CheckersBoardAI : MonoBehaviour {
+public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
     public Piece[,] pieces = new Piece[8, 8];
 
     [Header("Prefabs")]
@@ -19,10 +19,13 @@ public class CheckersBoardAI : MonoBehaviour {
     public GameObject blackKingPiecePrefab;
 
     [Header("Board Settings")]
-    public bool isRedTurn = true;
+    public bool isRedTurn { get; set; } = true;
 
     private Vector3 boardOffSet = new Vector3(-4f, 5.411365f, -3.5f);
     private Vector3 pieceOffSet = new Vector3(1.5f, 0, 0.5f);
+
+    // This field is used for chain captures.
+    private Piece chainCapturePiece = null;
 
     public void ResetBoard() {
         for (int x = 0; x < 8; x++) {
@@ -33,8 +36,10 @@ public class CheckersBoardAI : MonoBehaviour {
                 }
             }
         }
-        isRedTurn = true; 
-        for (int y = 0; y < 3; y++) { // red team
+        isRedTurn = true;
+        chainCapturePiece = null;
+        // Set up red pieces
+        for (int y = 0; y < 3; y++) {
             bool oddRow = (y % 2) == 0;
             for (int x = 0; x < 8; x += 2) {
                 int posX = oddRow ? x : x + 1;
@@ -42,8 +47,8 @@ public class CheckersBoardAI : MonoBehaviour {
                     GeneratePiece(posX, y, true);
             }
         }
-
-        for (int y = 7; y > 4; y--) { // black team
+        // Set up black pieces
+        for (int y = 7; y > 4; y--) {
             bool oddRow = (y % 2) == 0;
             for (int x = 0; x < 8; x += 2) {
                 int posX = oddRow ? x : x + 1;
@@ -83,6 +88,68 @@ public class CheckersBoardAI : MonoBehaviour {
 
     public List<Move> GetValidMoves(bool forRed) {
         List<Move> validMoves = new List<Move>();
+        List<Move> forcedMoves = new List<Move>();
+
+        // If a chain capture is active, only allow moves for that piece.
+        if (chainCapturePiece != null) {
+            int x = -1, y = -1;
+            // Find the location of the chain capture piece.
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (pieces[i, j] == chainCapturePiece) {
+                        x = i;
+                        y = j;
+                        break;
+                    }
+                }
+                if (x != -1) break;
+            }
+            if (x != -1 && y != -1) {
+                int[,] captureDirections = new int[,] { { 2, 2 }, { -2, 2 }, { 2, -2 }, { -2, -2 } };
+                for (int d = 0; d < captureDirections.GetLength(0); d++) {
+                    int dx = captureDirections[d, 0];
+                    int dy = captureDirections[d, 1];
+                    int targetX = x + dx;
+                    int targetY = y + dy;
+                    if (targetX >= 0 && targetX < 8 && targetY >= 0 && targetY < 8) {
+                        if (chainCapturePiece.ValidMove(pieces, x, y, targetX, targetY)) {
+                            forcedMoves.Add(new Move(x, y, targetX, targetY));
+                        }
+                    }
+                }
+            }
+            ShuffleList(forcedMoves);
+            return forcedMoves;
+        }
+
+        // First, search for forced (capture) moves for all pieces.
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                Piece piece = pieces[x, y];
+                if (piece != null && piece.isRed == forRed) {
+                    if (piece.IsForcedToMove(pieces, x, y)) {
+                        int[,] captureDirections = new int[,] { { 2, 2 }, { -2, 2 }, { 2, -2 }, { -2, -2 } };
+                        for (int d = 0; d < captureDirections.GetLength(0); d++) {
+                            int dx = captureDirections[d, 0];
+                            int dy = captureDirections[d, 1];
+                            int targetX = x + dx;
+                            int targetY = y + dy;
+                            if (targetX >= 0 && targetX < 8 && targetY >= 0 && targetY < 8) {
+                                if (piece.ValidMove(pieces, x, y, targetX, targetY)) {
+                                    forcedMoves.Add(new Move(x, y, targetX, targetY));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (forcedMoves.Count > 0) {
+            ShuffleList(forcedMoves);
+            return forcedMoves;
+        }
+
+        // Otherwise, return all valid regular moves.
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
                 Piece piece = pieces[x, y];
@@ -99,22 +166,21 @@ public class CheckersBoardAI : MonoBehaviour {
                             }
                         }
                     }
-                    int[,] captureDirections = new int[,] { { 2, 2 }, { -2, 2 }, { 2, -2 }, { -2, -2 } };
-                    for (int d = 0; d < captureDirections.GetLength(0); d++) {
-                        int dx = captureDirections[d, 0];
-                        int dy = captureDirections[d, 1];
-                        int targetX = x + dx;
-                        int targetY = y + dy;
-                        if (targetX >= 0 && targetX < 8 && targetY >= 0 && targetY < 8) {
-                            if (piece.ValidMove(pieces, x, y, targetX, targetY)) {
-                                validMoves.Add(new Move(x, y, targetX, targetY));
-                            }
-                        }
-                    }
                 }
             }
         }
+        ShuffleList(validMoves);
         return validMoves;
+    }
+
+    // Helper method: Fisher–Yates shuffle.
+    private void ShuffleList<T>(List<T> list) {
+        for (int i = list.Count - 1; i > 0; i--) {
+            int rnd = Random.Range(0, i + 1);
+            T temp = list[i];
+            list[i] = list[rnd];
+            list[rnd] = temp;
+        }
     }
 
     public float ExecuteMove(Move move) {
@@ -125,6 +191,7 @@ public class CheckersBoardAI : MonoBehaviour {
             return -0.1f;
         if (!selectedPiece.ValidMove(pieces, x1, y1, x2, y2))
             return -0.1f;
+        bool wasCapture = false;
         if (Mathf.Abs(x2 - x1) == 2) {
             int capX = (x1 + x2) / 2;
             int capY = (y1 + y2) / 2;
@@ -132,11 +199,15 @@ public class CheckersBoardAI : MonoBehaviour {
                 Destroy(pieces[capX, capY].gameObject);
                 pieces[capX, capY] = null;
                 reward += 0.5f;
+                wasCapture = true;
             }
         }
+        // Move the piece.
         pieces[x2, y2] = selectedPiece;
         pieces[x1, y1] = null;
         selectedPiece.transform.position = (Vector3.right * x2) + (Vector3.forward * y2) + boardOffSet + pieceOffSet;
+
+        // Promotion check.
         if (selectedPiece.isRed && !selectedPiece.isKing && y2 == 7) {
             Destroy(selectedPiece.gameObject);
             GameObject newKing = Instantiate(redKingPiecePrefab, transform);
@@ -145,6 +216,7 @@ public class CheckersBoardAI : MonoBehaviour {
             kingComponent.isKing = true;
             pieces[x2, y2] = kingComponent;
             kingComponent.transform.position = (Vector3.right * x2) + (Vector3.forward * y2) + boardOffSet + pieceOffSet;
+            selectedPiece = kingComponent;
         } else if (!selectedPiece.isRed && !selectedPiece.isKing && y2 == 0) {
             Destroy(selectedPiece.gameObject);
             GameObject newKing = Instantiate(blackKingPiecePrefab, transform);
@@ -153,9 +225,18 @@ public class CheckersBoardAI : MonoBehaviour {
             kingComponent.isKing = true;
             pieces[x2, y2] = kingComponent;
             kingComponent.transform.position = (Vector3.right * x2) + (Vector3.forward * y2) + boardOffSet + pieceOffSet;
+            selectedPiece = kingComponent;
         }
         reward += 0.1f;
-        isRedTurn = !isRedTurn;
+
+        // Chain-capture logic:
+        if (wasCapture && selectedPiece.IsForcedToMove(pieces, x2, y2)) {
+            // Remain in chain capture mode.
+            chainCapturePiece = selectedPiece;
+        } else {
+            chainCapturePiece = null;
+            isRedTurn = !isRedTurn;
+        }
         return reward;
     }
 

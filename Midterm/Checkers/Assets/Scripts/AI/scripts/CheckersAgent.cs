@@ -10,12 +10,24 @@ public class CheckersAgent : Agent {
     public bool isRedAgent = true;
 
     [Header("Environment Reference")]
-    [Tooltip("Reference to the CheckersBoardAI environment.")]
-    public CheckersBoardAI board;
+    [Tooltip("Reference to the CheckersBoard environment implementing ICheckersBoard.")]
+    public MonoBehaviour boardComponent;
+
+    [Header("Mode Settings")]
+    [Tooltip("Set to true during training (episodes will end on victory); set to false for inference/solo play.")]
+    public bool trainingMode = false;
+
+    private ICheckersBoard board;
 
     public override void Initialize() {
+        if (boardComponent != null) {
+            board = boardComponent as ICheckersBoard;
+        }
         if (board == null) {
-            board = FindFirstObjectByType<CheckersBoardAI>();
+            board = FindFirstObjectByType<CheckersBoardAI>() as ICheckersBoard;
+            if (board == null) {
+                board = FindFirstObjectByType<CheckersBoard>() as ICheckersBoard;
+            }
         }
     }
 
@@ -25,34 +37,36 @@ public class CheckersAgent : Agent {
     }
 
     public override void CollectObservations(VectorSensor sensor) {
-        
         int[,] state = board.GetBoardState(); // Get the board state as an 8x8 integer grid
-        
         for (int y = 0; y < 8; y++) { // Flatten the grid (64 observations)
             for (int x = 0; x < 8; x++) {
                 sensor.AddObservation(state[x, y]);
             }
         }
-        
-        sensor.AddObservation(board.isRedTurn == isRedAgent ? 1 : 0); // binary observation indicating agent's turn
+        // Add one extra binary observation indicating if it is this agent's turn
+        sensor.AddObservation(board.isRedTurn == isRedAgent ? 1 : 0);
     }
 
     public override void OnActionReceived(ActionBuffers actions) {
-        
         if (board.isRedTurn != isRedAgent) return; // Only act if it is this agent's turn
 
         List<Move> validMoves = board.GetValidMoves(isRedAgent);
         if (validMoves.Count == 0) {
             // No valid moves: penalize and end the episode
-            SetReward(-1f);
-            EndEpisode();
+            if (trainingMode) {
+                SetReward(-1f);
+                EndEpisode();
+            } 
             return;
         }
 
         int action = actions.DiscreteActions[0];
         if (action < 0 || action >= validMoves.Count) {
-            // Out-of-range action
-            AddReward(-0.2f);
+            // Out-of-range action: penalize and end the episode
+            if (trainingMode) {
+                AddReward(-0.2f);
+                EndEpisode();
+            }
             return;
         }
 
@@ -62,12 +76,15 @@ public class CheckersAgent : Agent {
 
         int victor = board.CheckVictory();
         if (victor != 0) {
-            if ((victor == 1 && isRedAgent) || (victor == -1 && !isRedAgent)) { // victor: 1 means red wins, -1 means black wins
+            if ((victor == 1 && isRedAgent) || (victor == -1 && !isRedAgent)) {
+                // Correct victory
                 AddReward(1f);
             } else {
                 AddReward(-1f);
             }
-            EndEpisode();
+            if (trainingMode) {
+                EndEpisode();
+            }
             return;
         }
     }
