@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CheckersBoard : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class CheckersBoard : MonoBehaviour
     public GameObject redKingPiecePrefab;
     public GameObject blackPiecePrefab;
     public GameObject blackKingPiecePrefab;
+    public CanvasGroup alertCanvas;
+    private float lastAlert;
+    private bool alertActive;
 
     private Vector3 boardOffSet = new Vector3(-4f, 5.411365f, -3.5f);
     private Vector3 pieceOffSet = new Vector3(1.5f, 0, .5f);
@@ -30,9 +34,16 @@ public class CheckersBoard : MonoBehaviour
 
     private void Start()
     {
+        if (client) {
+            isRed = client.isHost;
+            Alert(client.players[0].name + " vs " + client.players[1].name);
+        } else {
+            Alert("Red Player's Turn");
+        }
         Instance = this;
         client = FindAnyObjectByType<Client>();
-        isRed = client.isHost;
+        if (client) { isRed = client.isHost; } // multiple play
+        
 
         isRedTurn = true;
         forcedPieces = new List<Piece>();
@@ -41,6 +52,7 @@ public class CheckersBoard : MonoBehaviour
 
     private void Update()
     {
+        UpdateAlert();
         UpdateMouseOver();
         
         // if my turn
@@ -213,13 +225,15 @@ public class CheckersBoard : MonoBehaviour
             MovePiece(kingComponent, x, y);
         }
 
-        string msg = "CMOV|";
-        msg += startDrag.x.ToString() + "|";
-        msg += startDrag.y.ToString() + "|";
-        msg += endDrag.x.ToString() + "|";
-        msg += endDrag.y.ToString();
+        if (client) { // send moves for multiplayer
+            string msg = "CMOV|";
+            msg += startDrag.x.ToString() + "|";
+            msg += startDrag.y.ToString() + "|";
+            msg += endDrag.x.ToString() + "|";
+            msg += endDrag.y.ToString();
 
-        client.Send(msg);
+            client.Send(msg);
+        }
 
         selectedPiece = null;
         startDrag = Vector2.zero;
@@ -227,9 +241,23 @@ public class CheckersBoard : MonoBehaviour
         if (ScanForPossibleMove(selectedPiece, x, y).Count != 0 && hasKilled) return; // can you will another?
 
         isRedTurn = !isRedTurn;
-        // isRed = !isRed;
         hasKilled = false;
         CheckVictory();
+
+        if (!client) {
+            isRed = !isRed;
+            if (isRed) {
+                Alert("Red Player's Turn");
+            } else {
+                Alert("Black Player's Turn");
+            }
+        } else {
+            if (isRed) {
+                Alert(client.players[0].name + "'s turn");
+            } else {
+                Alert(client.players[1].name + "'s turn");
+            }
+        }
     }
 
     private void CheckVictory(){
@@ -250,8 +278,10 @@ public class CheckersBoard : MonoBehaviour
 
     private void Victory(bool isRed){
         if(isRed){
+            Alert("Red Team Won!");
             Debug.Log("Red Team Won.");
         } else {
+            Alert("Black Team Won!");
             Debug.Log("Black Team Won.");
         }
     }
@@ -279,5 +309,25 @@ public class CheckersBoard : MonoBehaviour
             }
         }
         return forcedPieces;
+    }
+
+    public void UpdateAlert() {
+        if (alertActive) {
+            if(Time.time - lastAlert > 1.5f) {
+
+                alertCanvas.alpha = 1 - ((Time.time - lastAlert) - 1.5f);
+
+                if(Time.time - lastAlert > 2.5f) {
+                    alertActive = false;
+                }
+            }
+        }
+    }
+
+    public void Alert(string message) {
+        alertCanvas.GetComponentInChildren<TMP_Text>().text = message;
+        alertCanvas.alpha = 1;
+        lastAlert = Time.time;
+        alertActive = true;
     }
 }

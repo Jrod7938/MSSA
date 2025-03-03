@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
         hostMenu.SetActive(true);
     }
 
+    public void SoloButton() {
+        Debug.Log("Solo Button");
+        SceneManager.LoadScene("CheckersGame");
+    }
+
     public void ConnectToServerButton() {
         Debug.Log("Attempting to Connect to Server");
         string hostAddress = GameObject.Find("HostInput").GetComponent<TMP_InputField>().text;
