@@ -1,12 +1,11 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager Instance { set; get; }
+    public static bool VersusAI = false;
 
     public GameObject menu;
     public GameObject connectMenu;
@@ -50,7 +49,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void SoloButton() {
-        Debug.Log("Solo Button");
+        Debug.Log("Solo Button - Versus AI Mode");
+        VersusAI = true;
         SceneManager.LoadScene("CheckersGame");
     }
 
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
             if (client.clientName == "") client.clientName = "Client";
             client.ConnectToServer(hostAddress, 4793);
             connectMenu.SetActive(false);
-        }catch(Exception exception) {
+        } catch (Exception exception) {
             Debug.Log(exception.Message);
         }
     }
