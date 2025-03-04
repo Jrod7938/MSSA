@@ -540,4 +540,8 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         if (!hasBlackPieces) return 1;
         return 0;
     }
+
+    public void BackButton() {
+        SceneManager.LoadScene("Menu");
+    }
 }
