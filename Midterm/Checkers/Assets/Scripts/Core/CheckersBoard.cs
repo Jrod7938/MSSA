@@ -306,7 +306,7 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
             Alert("Black Team Won!");
             Debug.Log("Black Team Won.");
         }
-        SceneManager.LoadScene("CheckersGame");
+        ResetBoard();
     }
 
     private List<Piece> ScanForPossibleMove(Piece piece, int x, int y) {
@@ -362,6 +362,7 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         chainCapturePiece = null;
         forcedPieces.Clear();
         selectedPiece = null;
+        aiTurnTriggered = false;
         GenerateBoard();
         Alert(isRedTurn ? "Red Player's Turn" : "Black Player's Turn");
     }

@@ -351,7 +351,7 @@ PrefabInstance:
     - target: {fileID: 2555142208864739775, guid: a04da80ad261ca846b2c0ab1743ac357, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 55755f3a2f490894dbab16bd12c80874, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: 2f9b3b942a5404245a33133a8c0f5046, type: 3}
     - target: {fileID: 3640219292104756079, guid: a04da80ad261ca846b2c0ab1743ac357, type: 3}
       propertyPath: m_Name
       value: BigChungusVII
