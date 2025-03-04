@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class CheckersBoard : MonoBehaviour, ICheckersBoard {
     public static CheckersBoard Instance;
@@ -60,6 +61,7 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
 
         if (client == null) {
             if ((isRed && isRedTurn) || (!isRed && !isRedTurn)) {
+                CheckVictoryInternal();
                 int x = (int)mouseOver.x;
                 int y = (int)mouseOver.y;
 
@@ -74,6 +76,7 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
                 }
             } else {
                 if (aiAgent != null && !aiTurnTriggered) {
+                    if (!aiAgent.trainingMode) { CheckVictoryInternal(); }
                     aiTurnTriggered = true;
                     aiAgent.RequestDecision();
                 }
@@ -303,6 +306,7 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
             Alert("Black Team Won!");
             Debug.Log("Black Team Won.");
         }
+        SceneManager.LoadScene("CheckersGame");
     }
 
     private List<Piece> ScanForPossibleMove(Piece piece, int x, int y) {
