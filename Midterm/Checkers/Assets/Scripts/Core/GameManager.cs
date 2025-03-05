@@ -1,12 +1,11 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager Instance { set; get; }
+    public static bool VersusAI = false;
 
     public GameObject menu;
     public GameObject connectMenu;
@@ -17,6 +16,10 @@ public class GameManager : MonoBehaviour
 
     public TMP_InputField nameInput;
 
+    /// <summary>
+    /// Initializes the GameManager instance, sets up the menu UI, and ensures persistence 
+    /// across scenes
+    /// </summary>
     private void Start() {
         Instance = this;
         DontDestroyOnLoad(gameObject);
@@ -25,12 +28,18 @@ public class GameManager : MonoBehaviour
         hostMenu.SetActive(false);
     }
 
+    /// <summary>
+    /// Activates the connection menu and hides the main menu when the Connect button is pressed
+    /// </summary>
     public void ConnectButton() {
         Debug.Log("Connect Button");
         menu.SetActive(false);
         connectMenu.SetActive(true);
     }
 
+    /// <summary>
+    /// Instantiates the server and client for hosting a game, then switches to the host menu
+    /// </summary>
     public void HostButton() {
         Debug.Log("Host Button");
         try {
@@ -49,11 +58,19 @@ public class GameManager : MonoBehaviour
         hostMenu.SetActive(true);
     }
 
+    /// <summary>
+    /// Activates solo play mode versus AI and loads the Checkers game scene
+    /// </summary>
     public void SoloButton() {
-        Debug.Log("Solo Button");
+        Debug.Log("Solo Button - Versus AI Mode");
+        VersusAI = true;
         SceneManager.LoadScene("CheckersGame");
     }
 
+    /// <summary>
+    /// Attempts to connect to a server using the provided host address and then hides the 
+    /// connection menu
+    /// </summary>
     public void ConnectToServerButton() {
         Debug.Log("Attempting to Connect to Server");
         string hostAddress = GameObject.Find("HostInput").GetComponent<TMP_InputField>().text;
@@ -65,11 +82,15 @@ public class GameManager : MonoBehaviour
             if (client.clientName == "") client.clientName = "Client";
             client.ConnectToServer(hostAddress, 4793);
             connectMenu.SetActive(false);
-        }catch(Exception exception) {
+        } catch (Exception exception) {
             Debug.Log(exception.Message);
         }
     }
 
+    /// <summary>
+    /// Returns to the main menu by deactivating connection/host menus and destroying any existing 
+    /// server/client instances
+    /// </summary>
     public void BackButton() {
         Debug.Log("Back Button");
         connectMenu.SetActive(false);
@@ -83,7 +104,11 @@ public class GameManager : MonoBehaviour
         if (client != null) Destroy(client.gameObject);
     }
 
+    /// <summary>
+    /// Loads the Checkers game scene to start the game
+    /// </summary>
     public void StartGame() {
         SceneManager.LoadScene("CheckersGame");
     }
+
 }
