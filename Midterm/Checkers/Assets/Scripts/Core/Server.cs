@@ -15,6 +15,10 @@ public class Server : MonoBehaviour
     private TcpListener server;
     private bool serverStarted;
 
+    /// <summary>
+    /// Initializes the server by setting the GameObject to persist across scenes, creating 
+    /// client lists, and starting the TCP listener on the designated port
+    /// </summary>
     public void Init(){
         DontDestroyOnLoad(gameObject);
         clients = new List<ServerClient>();
@@ -31,6 +35,10 @@ public class Server : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Regularly checks for incoming data from connected clients, processes received messages,
+    /// and handles client disconnections
+    /// </summary>
     private void Update() {
         if (!serverStarted) return;
         foreach(ServerClient client in clients) {
@@ -59,10 +67,18 @@ public class Server : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Begins asynchronous listening for incoming TCP client connections
+    /// </summary>
     private void StartListening(){
         server.BeginAcceptTcpClient(AcceptTcpClient, server);
     }
 
+    /// <summary>
+    /// Callback invoked when a new TCP client connects. It creates a new ServerClient,
+    /// adds it to the clients list, and broadcasts the list of current users to the new client
+    /// </summary>
+    /// <param name="ar">The asynchronous result containing the listener state</param>
     private void AcceptTcpClient(IAsyncResult ar){
         TcpListener listener = (TcpListener)ar.AsyncState;
 
@@ -79,6 +95,11 @@ public class Server : MonoBehaviour
         BroadCast("SWHO|" + allUsers, clients[clients.Count - 1]);
     }
 
+    /// <summary>
+    /// Checks whether the specified TcpClient is still connected by polling its socket
+    /// </summary>
+    /// <param name="client">The TcpClient to check</param>
+    /// <returns>True if the client is connected; else false</returns>
     private bool IsConnected(TcpClient client) {
         try {
             if(client != null && client.Client != null && client.Client.Connected) {
@@ -95,6 +116,11 @@ public class Server : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Broadcasts a message to a specified list of server clients
+    /// </summary>
+    /// <param name="data">The message to send</param>
+    /// <param name="clientList">The list of clients to recieve the message</param>
     private void BroadCast(string data, List<ServerClient> clientList) { // Server Send
         foreach(ServerClient serverClient in clientList) {
             try {
@@ -106,10 +132,23 @@ public class Server : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Broadcasts a message to a single server client.
+    /// </summary>
+    /// <param name="data">The message to send</param>
+    /// <param name="client">The target server client</param>
     private void BroadCast(string data, ServerClient client) { // Server Send
         List<ServerClient> serverClient = new List<ServerClient>() { client };
         BroadCast(data, serverClient);
     }
+
+    /// <summary>
+    /// Processes incoming data from a client by parsing the command and executing the 
+    /// corresponding action, such as registering a new user or broadcasting a move
+    /// </summary>
+    /// <param name="serverClient">The client that sent the data</param>
+    /// <param name="data">The received data string</param>
     private void OnInComingData(ServerClient serverClient, string data) { // Server Recieve
         Debug.Log("Server: " + data);
         string[] aData = data.Split('|');
@@ -125,6 +164,7 @@ public class Server : MonoBehaviour
                 break;
         }
     }
+
 }
 
 public class ServerClient{
@@ -132,7 +172,12 @@ public class ServerClient{
     public TcpClient tcp;
     public bool isHost;
 
+    /// <summary>
+    /// Initializes a new instance of the ServerClient class with the specified TcpClient
+    /// </summary>
+    /// <param name="tcp">The TcpClient associated with this server client</param>
     public ServerClient(TcpClient tcp){
         this.tcp = tcp;
     }
+
 }

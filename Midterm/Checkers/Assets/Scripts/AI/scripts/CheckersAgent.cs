@@ -19,6 +19,11 @@ public class CheckersAgent : Agent {
 
     private ICheckersBoard board;
 
+    /// <summary>
+    /// Initializes the agent by acquiring a reference to the checkers board environment
+    /// It first checks the provided boardComponent, and if not found, attempts to locate 
+    /// one in the scene
+    /// </summary>
     public override void Initialize() {
         if (boardComponent != null) {
             board = boardComponent as ICheckersBoard;
@@ -31,11 +36,20 @@ public class CheckersAgent : Agent {
         }
     }
 
+    /// <summary>
+    /// Resets the board and sets the turn to red at the beginning of each episode
+    /// </summary>
     public override void OnEpisodeBegin() {
         board.ResetBoard();
         board.isRedTurn = true; // Always start with red turn
     }
 
+    /// <summary>
+    /// Collects observations from the environment by flattening the board state into 64 
+    /// integer observations, followed by a binary observation indicating if it is the 
+    /// agent's turn
+    /// </summary>
+    /// <param name="sensor">The sensor that collects observations</param>
     public override void CollectObservations(VectorSensor sensor) {
         int[,] state = board.GetBoardState(); // Get the board state as an 8x8 integer grid
         for (int y = 0; y < 8; y++) { // Flatten the grid (64 observations)
@@ -43,12 +57,18 @@ public class CheckersAgent : Agent {
                 sensor.AddObservation(state[x, y]);
             }
         }
-        // Add one extra binary observation indicating if it is this agent's turn
+        // agent's turn
         sensor.AddObservation(board.isRedTurn == isRedAgent ? 1 : 0);
     }
 
+    /// <summary>
+    /// Processes the agent's chosen action by verifying if it's the agent's turn, selecting 
+    /// a move from the list of valid moves, executing the move, awarding rewards, and 
+    /// checking for victory conditions
+    /// </summary>
+    /// <param name="actions">The actions received from the policy</param>
     public override void OnActionReceived(ActionBuffers actions) {
-        if (board.isRedTurn != isRedAgent) return; // Only act if it is this agent's turn
+        if (board.isRedTurn != isRedAgent) return; // Only act on agent's turn
 
         List<Move> validMoves = board.GetValidMoves(isRedAgent);
         if (validMoves.Count == 0) {
@@ -89,10 +109,15 @@ public class CheckersAgent : Agent {
         }
     }
 
+    /// <summary>
+    /// Provides a heuristic for manual testing by selecting a random valid move
+    /// </summary>
+    /// <param name="actionsOut">The output action buffer where the chosen action is stored</param>
     public override void Heuristic(in ActionBuffers actionsOut) {
         // For manual testing, choose a random valid move
         List<Move> validMoves = board.GetValidMoves(isRedAgent);
         int randomAction = validMoves.Count > 0 ? Random.Range(0, validMoves.Count) : 0;
         actionsOut.DiscreteActions.Array[0] = randomAction;
     }
+
 }

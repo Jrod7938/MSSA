@@ -25,7 +25,6 @@ public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
     private Vector3 boardOffSet = new Vector3(-4f, 5.411365f, -3.5f);
     private Vector3 pieceOffSet = new Vector3(1.5f, 0, 0.5f);
 
-    // This field is used for chain captures.
     private Piece chainCapturePiece = null;
 
     public int redScore = 0;
@@ -33,6 +32,10 @@ public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
     public TMP_Text redScoreText;
     public TMP_Text blackScoreText;
 
+    /// <summary>
+    /// Resets the board by clearing existing pieces and reinitializing it with 
+    /// red and black pieces in their starting positions
+    /// </summary>
     public void ResetBoard() {
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
@@ -64,6 +67,13 @@ public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Instantiates and places a new piece on the board at the specified coordinates, 
+    /// setting its team based on the provided flag
+    /// </summary>
+    /// <param name="x">The x-coordinate on the board</param>
+    /// <param name="y">The y-coordinate on the board</param>
+    /// <param name="isRed">Determines if the piece belongs to the red team</param>
     void GeneratePiece(int x, int y, bool isRed) {
         GameObject pieceObj = isRed
             ? Instantiate(redPiecePrefab, transform)
@@ -75,6 +85,14 @@ public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
         piece.transform.position = (Vector3.right * x) + (Vector3.forward * y) + boardOffSet + pieceOffSet;
     }
 
+    /// <summary>
+    /// Retrieves the current state of the board as a two-dimensional integer array,
+    /// where each integer represents the state of a cell
+    /// </summary>
+    /// <returns>
+    /// A 2D integer array where 0 indicates an empty cell, 1 (or 2 for kings) indicates 
+    /// a red piece, and -1 (or -2 for kings) indicates a black piece
+    /// </returns>
     public int[,] GetBoardState() {
         int[,] state = new int[8, 8];
         for (int x = 0; x < 8; x++) {
@@ -92,6 +110,14 @@ public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
         return state;
     }
 
+    /// <summary>
+    /// Computes and returns all valid moves for the specified team, including forced 
+    /// capture moves and regular moves, while also handling chain-capture conditions
+    /// </summary>
+    /// <param name="forRed">
+    /// If true, computes moves for red pieces; otherwise, for  black pieces
+    /// </param>
+    /// <returns>A list of valid moves available to the specified team</returns>
     public List<Move> GetValidMoves(bool forRed) {
         List<Move> validMoves = new List<Move>();
         List<Move> forcedMoves = new List<Move>();
@@ -179,7 +205,11 @@ public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
         return validMoves;
     }
 
-    // Helper method: Fisher–Yates shuffle.
+    /// <summary>
+    /// Randomly shuffles the elements of the provided list using the Fisher Yates algorithm
+    /// </summary>
+    /// <typeparam name="T">The type of elements in the list</typeparam>
+    /// <param name="list">The list to shuffle</param>
     private void ShuffleList<T>(List<T> list) {
         for (int i = list.Count - 1; i > 0; i--) {
             int rnd = Random.Range(0, i + 1);
@@ -189,6 +219,12 @@ public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Executes a move on the board by updating piece positions, handling captures and 
+    /// promotions, and returns a reward value indicating the outcome of the move
+    /// </summary>
+    /// <param name="move">The move to execute, containing starting and target coordinates</param>
+    /// <returns>A float representing the reward for executing the move</returns>
     public float ExecuteMove(Move move) {
         float reward = 0f;
         int x1 = move.startX, y1 = move.startY, x2 = move.targetX, y2 = move.targetY;
@@ -246,6 +282,13 @@ public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
         return reward;
     }
 
+    /// <summary>
+    /// Checks for victory by verifying if either team has no remaining pieces, updates scores accordingly,
+    /// and refreshes the score UI
+    /// </summary>
+    /// <returns>
+    /// Returns -1 if red loses (black wins), 1 if black loses (red wins), or 0 if no victory condition is met
+    /// </returns>
     public int CheckVictory() {
         bool hasRed = false, hasBlack = false;
         for (int x = 0; x < 8; x++) {
@@ -271,8 +314,12 @@ public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
         return 0;
     }
 
+    /// <summary>
+    /// Updates the score display UI to reflect the current scores of both the red and black teams 
+    /// </summary>
     private void UpdateScoreUI() {
         redScoreText.text = redScore.ToString();
         blackScoreText.text = blackScore.ToString();
     }
+
 }

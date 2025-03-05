@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using Random = UnityEngine.Random;
-using UnityEngine.SceneManagement;
 
 public class CheckersBoard : MonoBehaviour, ICheckersBoard {
     public static CheckersBoard Instance;
@@ -20,7 +18,7 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
     private Vector3 boardOffSet = new Vector3(-4f, 5.411365f, -3.5f);
     private Vector3 pieceOffSet = new Vector3(1.5f, 0, .5f);
 
-    public bool isRed; 
+    public bool isRed;
     public bool isRedTurn { get; set; } = true;
     private bool hasKilled;
     private Piece selectedPiece;
@@ -33,7 +31,7 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
     private Client client;
 
     public CheckersAgent aiAgent;
-    private bool aiTurnTriggered = false; 
+    private bool aiTurnTriggered = false;
     private Piece chainCapturePiece = null;
 
     public int redScore = 0;
@@ -41,6 +39,10 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
     public TMP_Text redScoreText;
     public TMP_Text blackScoreText;
 
+    /// <summary>
+    /// Initializes the game board, sets up the player/team, and 
+    /// generates the board pieces
+    /// </summary>
     private void Start() {
         client = FindAnyObjectByType<Client>();
         if (client) {
@@ -60,6 +62,10 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Handles frame updates including alert fading, mouse position 
+    /// tracking, player input, and AI decision requests
+    /// </summary>
     private void Update() {
         UpdateAlert();
         UpdateMouseOver();
@@ -105,11 +111,18 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Cleans up the singleton instance on destruction
+    /// </summary>
     private void OnDestroy() {
         if (Instance == this)
             Instance = null;
     }
 
+    /// <summary>
+    /// Generates the initial board layout with red and black pieces
+    /// in their positions
+    /// </summary>
     private void GenerateBoard() {
         for (int y = 0; y < 3; y++) { // red team
             bool oddRow = (y % 2) == 0;
@@ -126,6 +139,10 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Updates the mouse position over the board based on raycast
+    /// from the main camera.
+    /// </summary>
     private void UpdateMouseOver() {
         if (!Camera.main) {
             Debug.Log("Unable to find Main Camera");
@@ -142,6 +159,11 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Updates the dragged piece's position to follow the mouse 
+    /// cursor using a raycast
+    /// </summary>
+    /// <param name="piece"></param>
     private void UpdatePieceDrag(Piece piece) {
         if (!Camera.main) {
             Debug.Log("Unable to find Main Camera");
@@ -154,6 +176,12 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Selects a piece at the specified board coordinates if it 
+    /// belongs to the current player
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
     private void SelectPiece(int x, int y) {
         if (x < 0 || x >= 8 || y < 0 || y >= 8) return;
 
@@ -170,6 +198,14 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Attempts to move a piece from its starting position to a 
+    /// target position and handles capture and turn logic
+    /// </summary>
+    /// <param name="x1">Starting X-coordinate</param>
+    /// <param name="y1">Starting Y-coordinate</param>
+    /// <param name="x2">Target X-coordinate</param>
+    /// <param name="y2">Target Y-coordinate</param>
     public void TryMove(int x1, int y1, int x2, int y2) {
         forcedPieces = ScanForPossibleMove();
 
@@ -223,6 +259,12 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Instantiates a new piece on the board at the specified 
+    /// coordinates based on team
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
     private void GeneratePiece(int x, int y) {
         bool pieceIsRed = (y > 3) ? false : true;
         GameObject piece = Instantiate((pieceIsRed) ? redPiecePrefab : blackPiecePrefab, transform);
@@ -232,16 +274,27 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         MovePiece(p, x, y);
     }
 
+    /// <summary>
+    /// Moves a piece to a specified board coordinate by updating 
+    /// its transform position
+    /// </summary>
+    /// <param name="piece"></param>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
     private void MovePiece(Piece piece, int x, int y) {
         piece.transform.position = (Vector3.right * x) + (Vector3.forward * y) + boardOffSet + pieceOffSet;
     }
 
+    /// <summary>
+    /// Completes the current turn by checking for promotions, 
+    /// sending moves in multiplayer, and switching players
+    /// </summary>
     private void EndTurn() {
         int x = (int)endDrag.x;
         int y = (int)endDrag.y;
-       
+
         Piece movingPiece = selectedPiece;
-        
+
         if (movingPiece != null) { // Promotion check
             if (movingPiece.isRed && !movingPiece.isKing && y == 7) {
                 Destroy(movingPiece.gameObject);
@@ -293,6 +346,10 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Checks whether either team has won by verifying if one side has
+    /// no remaining pieces.
+    /// </summary>
     private void CheckVictoryInternal() {
         var ps = FindObjectsByType<Piece>(FindObjectsSortMode.None);
         bool hasRedPieces = false;
@@ -308,6 +365,11 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         if (!hasBlackPieces) Victory(true);
     }
 
+    /// <summary>
+    /// Handles victory by updating scores, alerting the user, and 
+    /// resetting the board
+    /// </summary>
+    /// <param name="redWon">Indicates if the red team has won</param>
     private void Victory(bool redWon) {
         if (redWon) {
             redScore++;
@@ -322,6 +384,14 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         ResetBoard();
     }
 
+    /// <summary>
+    /// Scans and returns forced moves for a specific piece at the given 
+    /// board position
+    /// </summary>
+    /// <param name="piece"></param>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <returns>A list of pieces forced to move</returns>
     private List<Piece> ScanForPossibleMove(Piece piece, int x, int y) {
         forcedPieces = new List<Piece>();
         if (pieces[x, y].IsForcedToMove(pieces, x, y)) {
@@ -330,6 +400,11 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         return forcedPieces;
     }
 
+    /// <summary>
+    /// Scans the entire board and returns a list of pieces that are forced 
+    /// to move
+    /// </summary>
+    /// <returns>A list of forced pieces</returns>
     private List<Piece> ScanForPossibleMove() {
         forcedPieces = new List<Piece>();
         for (int i = 0; i < 8; i++) {
@@ -344,6 +419,9 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         return forcedPieces;
     }
 
+    /// <summary>
+    /// Updates the alert UI, fading out the alert message over time
+    /// </summary>
     public void UpdateAlert() {
         if (alertActive) {
             if (Time.time - lastAlert > 1.5f) {
@@ -355,6 +433,10 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Displays an alert message on the UI
+    /// </summary>
+    /// <param name="message">The message to display</param>
     public void Alert(string message) {
         alertCanvas.GetComponentInChildren<TMP_Text>().text = message;
         alertCanvas.alpha = 1;
@@ -362,6 +444,10 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         alertActive = true;
     }
 
+    /// <summary>
+    /// Resets the board by destroying existing pieces, clearing state, and 
+    /// regenerating the board
+    /// </summary>
     public void ResetBoard() {
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
@@ -380,6 +466,10 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         Alert(isRedTurn ? "Red Player's Turn" : "Black Player's Turn");
     }
 
+    /// <summary>
+    /// Retrieves the current state of the board as a 2D array
+    /// </summary>
+    /// <returns>A two-dimensional array representing the board state</returns>
     public int[,] GetBoardState() {
         int[,] state = new int[8, 8];
         for (int x = 0; x < 8; x++) {
@@ -393,6 +483,13 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         return state;
     }
 
+    /// <summary>
+    /// Computes and returns all valid moves for the specified team, including 
+    /// forced and regular moves
+    /// </summary>
+    /// <param name="forRed">Determines if valid moves for red pieces are 
+    /// returned</param>
+    /// <returns>A list of valid moves</returns>
     public List<Move> GetValidMoves(bool forRed) {
         List<Move> validMoves = new List<Move>();
         List<Move> forcedMoves = new List<Move>();
@@ -476,6 +573,11 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         return validMoves;
     }
 
+    /// <summary>
+    /// Randomly shuffles the elements of a list
+    /// </summary>
+    /// <typeparam name="T">The type of the list elements</typeparam>
+    /// <param name="list">The list to shuffle</param>
     private void ShuffleList<T>(List<T> list) {
         for (int i = list.Count - 1; i > 0; i--) {
             int rnd = Random.Range(0, i + 1);
@@ -485,6 +587,12 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         }
     }
 
+    /// <summary>
+    /// Executes a move, handling piece movement, captures, promotions, and 
+    /// turn switching, while returning a reward value
+    /// </summary>
+    /// <param name="move">The move to execute</param>
+    /// <returns>A float representing the reward for the move</returns>
     public float ExecuteMove(Move move) {
         float reward = 0f;
         int x1 = move.startX, y1 = move.startY, x2 = move.targetX, y2 = move.targetY;
@@ -540,6 +648,11 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         return reward;
     }
 
+    /// <summary>
+    /// Checks for victory by verifying if either team has no remaining pieces
+    /// </summary>
+    /// <returns>Returns -1 if red loses, 1 if black loses, or 0 if no victory 
+    /// condition is met</returns>
     public int CheckVictory() {
         bool hasRedPieces = false, hasBlackPieces = false;
         for (int x = 0; x < 8; x++) {
@@ -554,11 +667,17 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         return 0;
     }
 
+    /// <summary>
+    /// Updates the score UI to reflect the current scores of red and black teams
+    /// </summary>
     private void UpdateScoreUI() {
         redScoreText.text = redScore.ToString();
         blackScoreText.text = blackScore.ToString();
     }
 
+    /// <summary>
+    /// Resets the game by clearing scores, updating the score UI, and resetting the board
+    /// </summary>
     public void ResetButton() {
         redScore = 0;
         blackScore = 0;
