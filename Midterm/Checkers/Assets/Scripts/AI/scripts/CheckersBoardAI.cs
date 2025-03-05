@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [System.Serializable]
@@ -26,6 +27,11 @@ public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
 
     // This field is used for chain captures.
     private Piece chainCapturePiece = null;
+
+    public int redScore = 0;
+    public int blackScore = 0;
+    public TMP_Text redScoreText;
+    public TMP_Text blackScoreText;
 
     public void ResetBoard() {
         for (int x = 0; x < 8; x++) {
@@ -252,8 +258,21 @@ public class CheckersBoardAI : MonoBehaviour, ICheckersBoard {
                 }
             }
         }
-        if (!hasRed) return -1;
-        if (!hasBlack) return 1;
+        if (!hasRed) {
+            blackScore++;
+            UpdateScoreUI();
+            return -1;
+        }
+        if (!hasBlack) {
+            redScore++;
+            UpdateScoreUI();
+            return 1; 
+        }
         return 0;
+    }
+
+    private void UpdateScoreUI() {
+        redScoreText.text = redScore.ToString();
+        blackScoreText.text = blackScore.ToString();
     }
 }

@@ -21,7 +21,7 @@ behaviors:
       play_against_latest_model: true
       team_change: 0.5
       swap_steps: 20000
-    max_steps: 10000000
+    max_steps: 25000000
     checkpoint_interval: 250000
     time_horizon: 64
     summary_freq: 10000

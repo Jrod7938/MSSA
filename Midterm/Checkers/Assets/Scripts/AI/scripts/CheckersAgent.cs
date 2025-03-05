@@ -1,8 +1,8 @@
+using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
-using System.Collections.Generic;
 
 public class CheckersAgent : Agent {
     [Header("Agent Settings")]
@@ -56,7 +56,7 @@ public class CheckersAgent : Agent {
             if (trainingMode) {
                 SetReward(-1f);
                 EndEpisode();
-            } 
+            }
             return;
         }
 

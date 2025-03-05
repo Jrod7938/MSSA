@@ -24,7 +24,7 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
     public bool isRedTurn { get; set; } = true;
     private bool hasKilled;
     private Piece selectedPiece;
-    private List<Piece> forcedPieces;
+    private List<Piece> forcedPieces = new List<Piece>();
 
     private Vector2 mouseOver;
     private Vector2 startDrag;
@@ -35,6 +35,11 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
     public CheckersAgent aiAgent;
     private bool aiTurnTriggered = false; 
     private Piece chainCapturePiece = null;
+
+    public int redScore = 0;
+    public int blackScore = 0;
+    public TMP_Text redScoreText;
+    public TMP_Text blackScoreText;
 
     private void Start() {
         client = FindAnyObjectByType<Client>();
@@ -98,6 +103,11 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
                 }
             }
         }
+    }
+
+    private void OnDestroy() {
+        if (Instance == this)
+            Instance = null;
     }
 
     private void GenerateBoard() {
@@ -300,12 +310,15 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
 
     private void Victory(bool redWon) {
         if (redWon) {
+            redScore++;
             Alert("Red Team Won!");
             Debug.Log("Red Team Won.");
         } else {
+            blackScore++;
             Alert("Black Team Won!");
             Debug.Log("Black Team Won.");
         }
+        UpdateScoreUI();
         ResetBoard();
     }
 
@@ -541,7 +554,16 @@ public class CheckersBoard : MonoBehaviour, ICheckersBoard {
         return 0;
     }
 
-    public void BackButton() {
-        SceneManager.LoadScene("Menu");
+    private void UpdateScoreUI() {
+        redScoreText.text = redScore.ToString();
+        blackScoreText.text = blackScore.ToString();
     }
+
+    public void ResetButton() {
+        redScore = 0;
+        blackScore = 0;
+        UpdateScoreUI();
+        ResetBoard();
+    }
+
 }
