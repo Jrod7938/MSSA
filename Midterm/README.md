@@ -82,13 +82,23 @@ https://github.com/user-attachments/assets/c3092291-6fea-4b7e-a287-de6db99fecf9
 1. **Requirements:**
    - Unity 2020.3 LTS or later
    - .NET Framework compatible with Unity
-   - Unity ML-Agents Toolkit
+   - Unity ML-Agents Toolkit 3.0.0
 
 2. **Setup:**
    - Clone the repository.
    - Open the project in Unity.
    - Import the required Unity ML-Agents package via the Package Manager.
    - Build and run the project from within Unity.
+
+3. **Optional: For AI Training**
+   - Install [Anaconda](https://www.anaconda.com/download)
+   - Open Anaconda Command Prompt and type the following commands: 
+      - ```conda create -n AI python=3.9 -y```
+      - ```conda activate AI```
+      - ```pip install mlagents```
+   - For training, run the following command:
+      - ```ml-agents \Checkers\Assets\Scripts\AI\configs\checkersConfig.yaml --train```
+   - Press Play in the Checkers Game AI Scene
 
 ---
 
