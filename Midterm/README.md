@@ -2,17 +2,20 @@
 
 This project is a Checkers game developed as a midterm project for the Microsoft Software & Systems Academy. It combines classic game mechanics with modern AI using Unity's ML-Agents toolkit and includes both single player (versus AI) and multiplayer modes.
 
+![Solo](https://github.com/user-attachments/assets/7d26a41f-628f-4e5c-8264-9fe282864605)
+
 ---
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Screenshots](#screenshots)
 - [Video Demo](#video-demo)
+- [Screenshots](#screenshots)
+- [Usage](#usage)
+- [Installation](#installation)
 - [Project Structure](#project-structure)
+
 - [Credits](#credits)
 - [License](#license)
 
@@ -40,18 +43,19 @@ This project implements a Checkers game with the following key elements:
 
 ---
 
-## Installation
+## Video Demo
 
-1. **Requirements:**
-   - Unity 2020.3 LTS or later
-   - .NET Framework compatible with Unity
-   - Unity ML-Agents Toolkit
+### AI Training Using Self Play
+https://github.com/user-attachments/assets/c3092291-6fea-4b7e-a287-de6db99fecf9
 
-2. **Setup:**
-   - Clone the repository.
-   - Open the project in Unity.
-   - Import the required Unity ML-Agents package via the Package Manager.
-   - Build and run the project from within Unity.
+---
+
+## Screenshots
+
+### Home Screen
+![HomeScreen](https://github.com/user-attachments/assets/f28bd6c0-cb2f-457c-a0dd-ee054785b95b)
+### Multiplayer
+![Multiplayer](https://github.com/user-attachments/assets/56878bbd-adfc-432d-9712-650920781da6)
 
 ---
 
@@ -73,16 +77,18 @@ This project implements a Checkers game with the following key elements:
 
 ---
 
-## Screenshots
+## Installation
 
+1. **Requirements:**
+   - Unity 2020.3 LTS or later
+   - .NET Framework compatible with Unity
+   - Unity ML-Agents Toolkit
 
-
----
-
-## Video Demo
-
-
-
+2. **Setup:**
+   - Clone the repository.
+   - Open the project in Unity.
+   - Import the required Unity ML-Agents package via the Package Manager.
+   - Build and run the project from within Unity.
 
 ---
 
@@ -110,7 +116,7 @@ This project implements a Checkers game with the following key elements:
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/Jrod7938/MSSA/blob/main/LICENSE) file for details.
 
 ---
 
