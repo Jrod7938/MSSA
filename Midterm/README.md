@@ -2,6 +2,8 @@
 
 This project is a Checkers game developed as a midterm project for the Microsoft Software & Systems Academy. It combines classic game mechanics with modern AI using Unity's ML-Agents toolkit and includes both single player (versus AI) and multiplayer modes.
 
+[CHECKERS GAME DOWNLOAD LINK](https://github.com/Jrod7938/MSSA/releases/tag/v1.1)
+
 ![Solo](https://github.com/user-attachments/assets/7d26a41f-628f-4e5c-8264-9fe282864605)
 
 ---
@@ -97,7 +99,7 @@ https://github.com/user-attachments/assets/c3092291-6fea-4b7e-a287-de6db99fecf9
       - ```conda activate AI```
       - ```pip install mlagents```
    - For training, run the following command:
-      - ```ml-agents \Checkers\Assets\Scripts\AI\configs\checkersConfig.yaml --train```
+      - ```mlagents-learn \Checkers\Assets\Scripts\AI\configs\checkersConfig.yaml --train```
    - Press Play in the Checkers Game AI Scene
 
 ---
